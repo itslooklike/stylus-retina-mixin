@@ -1,0 +1,12 @@
+mixin-retina-bg($url, $ext = png, $width = 100, $height = 100, $scale = 3)
+  $dpi = 96
+  $descender = 0.75 //recommended value: 0.75, 0.5, 0.25
+
+  background-image url($url'.'$ext)
+  background-size $width $height
+  background-repeat no-repeat
+
+  if $scale > 1
+    for $i in 2..$scale
+      @media (min-resolution ($i - $descender) * ($dpi)dpi), (min-resolution ($i - $descender)dppx)
+        background-image url($url'@'$i'x.'$ext)
